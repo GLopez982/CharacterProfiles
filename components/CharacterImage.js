@@ -22,13 +22,11 @@ const styles = StyleSheet.create({
         width: 205,
         height: 205, 
         alignContent: 'center', 
-        marginTop: 10,  
+        marginTop: 10, 
 
     },
     profilePic:{
         width: 200, 
         height: 200, 
     }
-
-
-})
+});

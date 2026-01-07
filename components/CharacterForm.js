@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 
 export default function CharacterForm({characterData, setCharacterData, characterList, setCharacterList}) {
 
+    
 
     //This uses the spread operator to read the characterData and update the field with the input data
     const handleDataSubmit = (field, inputData) =>{
@@ -39,8 +40,6 @@ export default function CharacterForm({characterData, setCharacterData, characte
             <TextInput style={styles.textInput} value={characterData.ability2} onChangeText={(value) => handleDataSubmit('ability2', value)}  placeholder="Ability 2"  />
         </View>
         <Pressable style={styles.submitButton} onPress={handlePress}><Text style={styles.submitText}>Submit</Text></Pressable>
-    
-   
     </View>
   );
 }
@@ -57,10 +56,7 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 80, 
         borderBottomRightRadius:80,
         borderWidth: 1, 
-        borderColor: 'black'
-
-         
-            
+        borderColor: 'black'  
     },
     formContainer:{
         flex: 1, 

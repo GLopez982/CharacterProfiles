@@ -16,7 +16,7 @@ export default function CharacterDetails({route}){
         <View style={styles.container}>
             <Header/>
             <CharacterImage/>
-            <Text style={{color: 'yellow'}}>{characterData.fName}</Text>
+            <Text style={{}}>{characterData.fName}</Text>
             <Text style={styles.detail}>Town: {characterData.birthTown}</Text>
             <Text style={styles.detail}>Ability 1: {characterData.ability1}</Text>
             <Text style={styles.detail}>Ability 2: {characterData.ability2}</Text>
@@ -36,7 +36,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
     backgroundColor: 'black'
   }
- 
-
 });
     

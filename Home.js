@@ -12,9 +12,6 @@ export default function Home() {
             <Header />
             <CharacterList/>
             <Footer/>
-
-
-
         </ImageBackground>
         
     </View>

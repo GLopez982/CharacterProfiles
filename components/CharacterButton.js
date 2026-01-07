@@ -10,9 +10,6 @@ export default function CharacterButton({characterData, setCharacterData, onPres
     const removeItem = (index) => {
        
         setCharacterData(characterData.filter((item)=> item.i !== index));
-
-    
-
     }
 
     return(

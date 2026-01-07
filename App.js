@@ -16,9 +16,7 @@ export default function App() {
       <Navigator >
         <Screen component={Home} name='Home'/>
         <Screen component={CharacterDetails} name='CharacterDetails'/>
-
       </Navigator>
-
     </NavigationContainer>
   );
 }

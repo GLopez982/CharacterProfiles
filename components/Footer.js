@@ -18,8 +18,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center',
         marginTop: 20, 
-        
-        
     },
     footer:{
         fontSize: 18, 

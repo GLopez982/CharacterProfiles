@@ -23,9 +23,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         justifyContent: 'center',
         alignContent: 'center',
-        
-
-    
     }
 
 })
