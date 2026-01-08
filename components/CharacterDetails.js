@@ -11,13 +11,14 @@ export default function CharacterDetails({route}){
     //simplifies use by allowing calling of the object as item.xxx instead of data.item.xxxx or characterdata.item.xxx CLEARNER
 
     const {characterData} = route.params;
+    const profileImage = characterData.profileImage;
 
     return (
         <View style={styles.container}>
             <Header/>
-            <CharacterImage/>
-            <Text style={{}}>{characterData.fName}</Text>
-            <Text style={styles.detail}>Town: {characterData.birthTown}</Text>
+            <CharacterImage profileImage={profileImage}/>
+            <Text style={styles.detail}>Character Name: {characterData.fName} {characterData.lName}</Text>
+            <Text style={styles.detail}>Birthtown: {characterData.birthTown}</Text>
             <Text style={styles.detail}>Ability 1: {characterData.ability1}</Text>
             <Text style={styles.detail}>Ability 2: {characterData.ability2}</Text>
             <Footer/>
@@ -31,10 +32,19 @@ export default function CharacterDetails({route}){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    display: "flex", 
-    alignItems: 'center', 
     justifyContent: 'center', 
-    backgroundColor: 'black'
+    backgroundColor: 'gray',
+    width: 'auto',
+    gap: 10, 
+
+  }, 
+  detail: {
+    color: 'purple',
+    textAlign: 'center',
+    fontWeight: 'bold',
+
+
+
   }
 });
     

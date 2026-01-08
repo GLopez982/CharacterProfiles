@@ -2,19 +2,14 @@ import { useState } from "react";
 import { Text, View, StyleSheet, Pressable, ImageBackground } from "react-native";
 
 
-export default function CharacterButton({characterData, setCharacterData, onPress = () =>{}, onRemove = () => {}}){
+export default function CharacterButton({characterData, onPress = () =>{},  onRemove = () => {}}){
 
     const [isFocused, setIsFocused] = useState(false);
-    const image = require('../assets/icon.png');
 
-    const removeItem = (index) => {
-       
-        setCharacterData(characterData.filter((item)=> item.i !== index));
-    }
 
     return(
-        <Pressable style={styles.container } onLongPress={removeItem} onPress={() => onPress()} onFocus={() => setIsFocused(true)} onblur={() => setIsFocused(false)}>
-            <ImageBackground source={image}>
+        <Pressable style={styles.container } onLongPress={() => onRemove()} onPress={() => onPress()} onFocus={() => setIsFocused(true)} onblur={() => setIsFocused(false)}>
+            <ImageBackground source={{uri: characterData.profileImage}}>
             <View style={[styles.row, isFocused && styles.rowFocused]}>
             <Text style={{textAlign: 'center', margin: 'auto' }}>Character:   {characterData.fName} {characterData.lName}</Text>
             </View>
@@ -22,6 +17,8 @@ export default function CharacterButton({characterData, setCharacterData, onPres
         </Pressable>
         
     )
+
+    
 }const styles = StyleSheet.create({
     container:{
         flex: 1, 

@@ -22,9 +22,7 @@ const styles = StyleSheet.create({
     footer:{
         fontSize: 18, 
         color: 'white',
-        textAlign: 'center',        
-
-    
+        textAlign: 'center',
     }
 
 })
