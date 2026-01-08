@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native';
 import { useState, useEffect, useRef } from 'react';
+import * as ImagePicker from 'expo-image-picker'
 
 export default function CharacterForm({characterData, setCharacterData, characterList, setCharacterList}) {
 
@@ -29,6 +30,23 @@ export default function CharacterForm({characterData, setCharacterData, characte
     });
    }
 
+    const handleImageUpload = async () => {
+        const image = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ['images'],
+            allowsEditing: true, 
+            aspect: [1, 1],
+            quality: 1,
+        });
+
+        if(!image.canceled) {
+            setCharacterData({
+                ...characterData, 
+                profileImage: image.assets[0].uri, 
+            });
+        }
+    }
+
+
 
     return (
     <View style={styles.container}>
@@ -38,6 +56,8 @@ export default function CharacterForm({characterData, setCharacterData, characte
             <TextInput style={styles.textInput} value={characterData.birthTown} onChangeText={(value) => handleDataSubmit('birthTown', value)}  placeholder="Birth Town"  />
             <TextInput style={styles.textInput} value={characterData.ability1} onChangeText={(value) => handleDataSubmit('ability1', value)}  placeholder="Ability 1"  />
             <TextInput style={styles.textInput} value={characterData.ability2} onChangeText={(value) => handleDataSubmit('ability2', value)}  placeholder="Ability 2"  />
+            <Pressable  onPress={handleImageUpload}>
+                <Text style={styles.textInput}>Add a profile Picture: </Text></Pressable>
         </View>
         <Pressable style={styles.submitButton} onPress={handlePress}><Text style={styles.submitText}>Submit</Text></Pressable>
     </View>

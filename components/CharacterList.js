@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View, TextInput, Pressable, FlatList } from 'react-native';
 import { useState, useEffect, useRef } from 'react';
 import CharacterForm from './CharacterForm';
-import CharacterImage from './CharacterImage';
 import CharacterButton from './CharacterButton';
 import { useNavigation } from '@react-navigation/native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function CharacterList() {
 
@@ -16,9 +15,48 @@ export default function CharacterList() {
              birthTown: '',
              ability1: '', 
              ability2: '',
+             profileImage: null,
     });
 
     const [characterList, setCharacterList] =  useState([]);
+    
+
+    
+        const removeItem = (index) => {
+            setCharacterList(characterList.filter((_, i) => i !== index));
+        }
+
+    const loadCharacters = async () => {
+        try{
+        const saved = await AsyncStorage.getItem('characterList')
+            if(saved){
+                setCharacterList(JSON.parse(saved));
+            }else{
+                setCharacterList([]);
+            }
+        }catch(error){
+            console.error(error);
+        }
+    };
+    
+
+    const saveCharacters =  async () => {
+        try{
+            await AsyncStorage.setItem('characterList', JSON.stringify(characterList)) 
+        }catch(error){
+            console.error(error);
+        }
+    };
+
+      useEffect(()=>{
+        loadCharacters();
+    }, []);
+
+      useEffect(()=>{
+        if(characterList.length > 0){
+        saveCharacters();}
+    }, [characterList]);
+
 
     return (
     <View style={styles.container}>
@@ -26,11 +64,11 @@ export default function CharacterList() {
         <FlatList
             data={characterList}
             keyExtractor={(item, index) =>  index.toString()}
-            renderItem={({item}) => {
+            renderItem={({item, index}) => {
                 return(
                 <CharacterButton characterData={item} setCharacterData={item}
                     onPress={() => navigation.navigate("CharacterDetails", {characterData: item})
-                }
+                } onRemove={() => removeItem(index)}
                 />
                 )
             }}

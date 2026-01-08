@@ -4,11 +4,16 @@ import { View, Image, StyleSheet  } from "react-native";
 
 
 
-export default function CharacterImage(){
+export default function CharacterImage({profileImage}){
+
 
     return(
         <View style={styles.container} >
-            <Image style={styles.profilePic} source={require('../assets/icon.png')} />
+            {profileImage ? (<Image style={styles.profilePic} source={{uri: profileImage}}/>
+            ) : (<Text>No Profile Image available</Text> 
+
+            )}   
+       
         </View>
     )
 
@@ -19,14 +24,15 @@ const styles = StyleSheet.create({
         borderWidth: 2, 
         borderRadius: 2, 
         borderColor: 'green', 
-        width: 205,
-        height: 205, 
+        width: 200,
+        height: 200, 
         alignContent: 'center', 
         marginTop: 10, 
+        margin: 'auto'
 
     },
     profilePic:{
-        width: 200, 
-        height: 200, 
+        flex: 1, 
+        width: 'auto', 
     }
 });
